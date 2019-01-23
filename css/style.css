@@ -1,3 +1,10 @@
+h1{
+    background-color: #5F9FFF;
+    font-family: Arial;
+
+}
+
+
 html {
   height: 100%;
 }
@@ -9,6 +16,11 @@ body {
   height: 100%;
   overflow: hidden;
   font-family: Courier;
+
+  background-color: #5F9FFF;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 
 .hidden {
