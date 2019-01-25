@@ -63,7 +63,7 @@ OregonH.UI.fight = function(){
     this.caravan.crew -= damage;
     this.caravan.money += gold;
     this.notify(`${damage} people were killed fighting`, 'negative');
-    this.notify('Found $' + gold, 'gold');
+    this.notify(`Found ${gold} gold`, 'positive');
   }
   else {
     this.caravan.crew = 0;
@@ -93,7 +93,8 @@ OregonH.UI.runaway = function(){
   }
 
   //remove event listener
-  document.getElementById('runaway').removeEventListener('click');
+  // document.getElementById('runaway').removeEventListener('click');
+  //commented line above causes 'runaway' button to never end attack encounter
 
   //resume journey
   document.getElementById('attack').classList.add('hidden');
