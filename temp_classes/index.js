@@ -1,1 +1,1 @@
-gameSession = new Game();
+let gameSession = new Game();

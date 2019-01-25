@@ -42,7 +42,7 @@ class Game {
         this.step();
     };
 
-    step(this.timestep){
+    step(timestep){
         //starting, setup the previous time for the first time
         if(!this.previousTime){
           this.previousTime = timestamp;
@@ -63,7 +63,6 @@ class Game {
     };
 
     updateGame(){
-
         //day update
         this.caravan.day += this.DAY_PER_STEP;
 
@@ -115,5 +114,4 @@ class Game {
             this.gameActive = true;
             this.step();
         };
-
-}
+};

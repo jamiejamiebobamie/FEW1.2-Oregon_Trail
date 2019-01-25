@@ -123,7 +123,8 @@ class UI {
           for(let i=0; i < products.length; i++) {
             product = products[i];
             prodsDiv.innerHTML += '<div class="product" data-qty="' + product.qty + '" data-item="' + product.item + '" data-price="' + product.price + '">' + product.qty + ' ' + product.item + ' - $' + product.price + '</div>';
-    };
+    }
+};
 
     shopDivHandler(e){
         //what was clicked

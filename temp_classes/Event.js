@@ -41,16 +41,20 @@
 // attackEvent(eventData)
 
 
+
+
+
+
 class Product {
     constructor(item, qty, price){
         this.item = item;
         this.qty = qty;
         this.price = price;
     }
-}
+};
 
 class EventType {
-    constructor(type, notification, stat, value, text, products){
+    constructor(type, notification, stat=undefined, value=undefined, text, products=undefined){
         this.type = type
         this.notification = notification
         this.stat = stat
@@ -59,166 +63,38 @@ class EventType {
         this.products = products
     }
 
-}
+};
 
 class eventManager {
     constructor(){
-        this.eventTypes = [
-          {
-            type: 'STAT-CHANGE',
-            notification: 'negative',
-            stat: 'crew',
-            value: -3,
-            text: 'Food intoxication. Casualties: '
-          },
-          {
-            type: 'STAT-CHANGE',
-            notification: 'negative',
-            stat: 'crew',
-            value: -50,
-            text: 'Meteor shower. Casualties: '
-          },
-          {
-            type: 'STAT-CHANGE',
-            notification: 'positive',
-            stat: 'crew',
-            value: +50,
-            text: 'Aphrodisiac + time: '
-          },
-          {
-            type: 'STAT-CHANGE',
-            notification: 'negative',
-            stat: 'crew',
-            value: -4,
-            text: 'Flu outbreak. Casualties: '
-          },
-          {
-            type: 'STAT-CHANGE',
-            notification: 'negative',
-            stat: 'food',
-            value: -10,
-            text: 'Worm infestation. Food lost: '
-          },
-          {
-            type: 'STAT-CHANGE',
-            notification: 'positive',
-            stat: 'food',
-            value: +10,
-            text: 'Cannibalism. (You ate someone not in your crew.) Food gained: '
-          },
-          {
-            type: 'STAT-CHANGE',
-            notification: 'negative',
-            stat: 'money',
-            value: -50,
-            text: 'Pick pockets steal $'
-          },
-          {
-            type: 'STAT-CHANGE',
-            notification: 'positive',
-            stat: 'money',
-            value: +1000,
-            text: 'Gold! Money gained: '
-          },
-          {
-            type: 'STAT-CHANGE',
-            notification: 'negative',
-            stat: 'oxen',
-            value: -1,
-            text: 'Ox flu outbreak. Casualties: '
-          },
-          {
-            type: 'STAT-CHANGE',
-            notification: 'positive',
-            stat: 'food',
-            value: 20,
-            text: 'Found wild berries. Food added: '
-          },
-          {
-            type: 'STAT-CHANGE',
-            notification: 'positive',
-            stat: 'food',
-            value: 20,
-            text: 'Found wild berries. Food added: '
-          },
-          {
-            type: 'STAT-CHANGE',
-            notification: 'positive',
-            stat: 'oxen',
-            value: 1,
-            text: 'Found wild oxen. New oxen: '
-          },
-          {
-            type: 'STAT-CHANGE',
-            notification: 'positive',
-            stat: 'oxen',
-            value: 15,
-            text: 'Rut season: New oxen: '
-          },
-          {
-            type: 'SHOP',
-            notification: 'neutral',
-            text: 'You have found a shop',
-            products: [
-              {item: 'food', qty: 20, price: 50},
-              {item: 'oxen', qty: 1, price: 200},
-              {item: 'firepower', qty: 2, price: 50},
-              {item: 'crew', qty: 5, price: 80}
-            ]
-          },
-          {
-            type: 'SHOP',
-            notification: 'neutral',
-            text: 'You have found a shop',
-            products: [
-              {item: 'food', qty: 30, price: 50},
-              {item: 'oxen', qty: 1, price: 200},
-              {item: 'firepower', qty: 2, price: 20},
-              {item: 'crew', qty: 10, price: 80}
-            ]
-          },
-          {
-            type: 'SHOP',
-            notification: 'positive',
-            text: 'You have found a recently abandoned house',
-            products: [
-              {item: 'food', qty: 45, price: 0},
-              {item: 'firepower', qty: 12, price: 0},
-            ]
-          },
-          {
-            type: 'SHOP',
-            notification: 'neutral',
-            text: 'Smugglers sell various goods',
-            products: [
-              {item: 'food', qty: 20, price: 60},
-              {item: 'oxen', qty: 1, price: 300},
-              {item: 'firepower', qty: 2, price: 80},
-              {item: 'crew', qty: 5, price: 60}
-            ]
-          },
-          {
-              type: 'ATTACK',
-              notification: 'negative',
-              text: 'Bandits are attacking you'
-            },
-            {
-                type: 'ATTACK',
-                notification: 'negative',
-                text: 'Bears are attacking you'
-              },
-            {
-              type: 'ATTACK',
-              notification: 'negative',
-              text: 'Bandits are attacking you'
-            },
-            {
-              type: 'ATTACK',
-              notification: 'negative',
-              text: 'Bandits are attacking you'
-            }
-          ];
 
+        this.eventTypes = [
+//stat-changes
+            event1 = new EventType('STAT-CHANGE', 'negative', 'crew', -3, 'Food intoxication. Casualties: '),
+            event2 = new EventType('STAT-CHANGE', 'negative', 'crew', -50, 'Meteor shower. Casualties: '),
+            event3 = new EventType('STAT-CHANGE', 'positive', 'crew', 2, 'Aphrodisiac + time. Crew gained: '),
+            event4 = new EventType('STAT-CHANGE', 'negative', 'crew', -4, 'Flu outbreak. Casualties: '),
+            event5 = new EventType('STAT-CHANGE', 'negative', 'food', -10, 'Worm infestation. Food lost: '),
+            event6 = new EventType('STAT-CHANGE', 'positive', 'food', 10, 'Cannibalism. (You ate someone not in your crew.) Food gained: '),
+            event7 = new EventType('STAT-CHANGE', 'negative', 'money', -50, 'Pick pockets steal $'),
+            event8 = new EventType('STAT-CHANGE', 'positive', 'money', 200, 'Gold! Money gained: '),
+            event9 = new EventType('STAT-CHANGE', 'negative', 'oxen', -2, 'Ox flu outbreak. Casualties: '),
+            event10 = new EventType('STAT-CHANGE', 'positive', 'food', 20, 'Found wild berries. Food added: '),
+            event11 = new EventType('STAT-CHANGE', 'positive', 'oxen', 1, 'Found wild oxen. New oxen: '),
+            event12 = new EventType('STAT-CHANGE', 'positive', 'crew', 3, 'Rutting season: New oxen: '),
+
+//shops
+            event13 = new EventType('SHOP', 'neutral', undefined, undefined, 'You have found a shop', [new Products('food', 20, 50), new Products('oxen', 1, 200), new Products('firepower', 2, 50), new Products('crew', 5, 80)]),
+            event14 = new EventType('SHOP', 'neutral', undefined, undefined, 'You have found a shop', [new Products('food', 30, 50), new Products('oxen', 1, 200), new Products('firepower', 2, 20), new Products('crew', 10, 80)]),
+            event15 = new EventType('SHOP', 'neutral', undefined, undefined, 'You found a very tiny hole in space-time.', [new Products('food', 1, 0), new Products('firepower', 1, 0)]),
+            event16 = new EventType('SHOP', 'neutral', undefined, undefined, 'Smugglers sell various goods', [new Products('food', 20, 60), new Products('oxen', 1, 300), new Products('firepower', 2, 80), new Products('crew', 5, 60)]),
+
+//attack
+            event17 = new EventType('ATTACK', 'negative', undefined, undefined, 'Bandits are attacking you'),
+            event18 = new EventType('ATTACK', 'negative', undefined, undefined, 'Bears are attacking you'),
+            event19 = new EventType('ATTACK', 'negative', undefined, undefined, 'Bandits are attacking you'),
+            event17 = new EventType('ATTACK', 'negative', undefined, undefined, 'Bandits are attacking you')
+        ]
     }
 
     generateEvent(){
