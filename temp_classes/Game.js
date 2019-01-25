@@ -3,7 +3,7 @@ class Game {
       constructor() {
         // Create dependent Objects
         this.ui = new UI(this);
-        this.eventManager = new Event(this);
+        this.eventManager = new eventManager(this);
         this.caravan = new Caravan(this, 0, 0, 30, 80, 2, 300, 2); //do i need to pass 'this' in as a reference?
 
         // pass references - set dependencies
