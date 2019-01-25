@@ -25,7 +25,7 @@ OregonH.UI.refreshStats = function() {
 
 //show attack
 OregonH.UI.showAttack = function(firepower, gold) {
-  var attackDiv = document.getElementById('attack');
+  const attackDiv = document.getElementById('attack');
   attackDiv.classList.remove('hidden');
 
   //keep properties
@@ -53,10 +53,10 @@ OregonH.UI.showAttack = function(firepower, gold) {
 //fight
 OregonH.UI.fight = function(){
 
-  var firepower = this.firepower;
-  var gold = this.gold;
+  let firepower = this.firepower;
+  let gold = this.gold;
 
-  var damage = Math.ceil(Math.max(0, firepower * 2 * Math.random() - this.caravan.firepower));
+  let damage = Math.ceil(Math.max(0, firepower * 2 * Math.random() - this.caravan.firepower));
 
   //check there are survivors
   if(damage < this.caravan.crew) {
@@ -78,9 +78,9 @@ OregonH.UI.fight = function(){
 //runing away from enemy
 OregonH.UI.runaway = function(){
 
-  var firepower = this.firepower;
+  let firepower = this.firepower;
 
-  var damage = Math.ceil(Math.max(0, firepower * Math.random()/2));
+  let damage = Math.ceil(Math.max(0, firepower * Math.random()/2));
 
   //check there are survivors
   if(damage < this.caravan.crew) {
@@ -105,7 +105,7 @@ OregonH.UI.runaway = function(){
 OregonH.UI.showShop = function(products){
 
   //get shop area
-  var shopDiv = document.getElementById('shop');
+  const shopDiv = document.getElementById('shop');
   shopDiv.classList.remove('hidden');
 
   //init the shop just once
@@ -114,7 +114,7 @@ OregonH.UI.showShop = function(products){
     //event delegation
     shopDiv.addEventListener('click', function(e){
       //what was clicked
-      var target = e.target || e.src;
+      let target = e.target || e.src;
 
       //exit button
       if(target.tagName == 'BUTTON') {
@@ -137,12 +137,12 @@ OregonH.UI.showShop = function(products){
   }
 
   //clear existing content
-  var prodsDiv = document.getElementById('prods');
+  const prodsDiv = document.getElementById('prods');
   prodsDiv.innerHTML = '';
 
   //show products
-  var product;
-  for(var i=0; i < products.length; i++) {
+  let product;
+  for(let i=0; i < products.length; i++) {
     product = products[i];
     prodsDiv.innerHTML += '<div class="product" data-qty="' + product.qty + '" data-item="' + product.item + '" data-price="' + product.price + '">' + product.qty + ' ' + product.item + ' - $' + product.price + '</div>';
   }

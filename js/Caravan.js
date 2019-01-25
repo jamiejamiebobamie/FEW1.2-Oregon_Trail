@@ -16,8 +16,8 @@ OregonH.Caravan.init = function(stats){
 
 //update weight and capacity
 OregonH.Caravan.updateWeight = function(){
-  var droppedFood = 0;
-  var droppedGuns = 0;
+  let droppedFood = 0;
+  let droppedGuns = 0;
 
   //how much can the caravan carry
   this.capacity = this.oxen * OregonH.WEIGHT_PER_OX + this.crew * OregonH.WEIGHT_PER_PERSON;
@@ -57,8 +57,8 @@ OregonH.Caravan.updateWeight = function(){
 //update covered distance
 OregonH.Caravan.updateDistance = function() {
   //the closer to capacity, the slower
-  var diff = this.capacity - this.weight;
-  var speed = OregonH.SLOW_SPEED + diff/this.capacity * OregonH.FULL_SPEED;
+  let diff = this.capacity - this.weight;
+  let speed = OregonH.SLOW_SPEED + diff/this.capacity * OregonH.FULL_SPEED;
   this.distance += speed;
 };
 

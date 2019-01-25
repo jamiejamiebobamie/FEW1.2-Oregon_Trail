@@ -73,7 +73,7 @@ OregonH.Game.step = function(timestamp) {
   }
 
   //time difference
-  var progress = timestamp - this.previousTime;
+  let progress = timestamp - this.previousTime;
 
   //game update
   if(progress >= OregonH.GAME_SPEED) {
