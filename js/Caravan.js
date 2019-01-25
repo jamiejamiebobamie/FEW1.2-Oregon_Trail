@@ -33,8 +33,14 @@ OregonH.Caravan.updateWeight = function(){
     droppedGuns++;
   }
 
+  // // Original Source
+  // this.ui.notify('Left ' + droppedGuns + ' guns behind', 'negative');
+  //
+  // // Becomes
+  // this.ui.notify(`Left ${droppedGuns} guns behind`, 'negative');
+
   if(droppedGuns) {
-    this.ui.notify('Left '+droppedGuns+' guns behind', 'negative');
+    this.ui.notify(`Left ${droppedGuns} guns behind`, 'negative');
   }
 
   while(this.food && this.capacity <= this.weight) {
@@ -44,7 +50,7 @@ OregonH.Caravan.updateWeight = function(){
   }
 
   if(droppedFood) {
-    this.ui.notify('Left '+droppedFood+' food provisions behind', 'negative');
+    this.ui.notify(`Left ${droppedFood} guns behind`, 'negative');
   }
 };
 

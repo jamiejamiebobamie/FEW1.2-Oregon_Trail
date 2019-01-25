@@ -32,8 +32,10 @@ OregonH.UI.showAttack = function(firepower, gold) {
   this.firepower = firepower;
   this.gold = gold;
 
-  //show firepower
-  document.getElementById('attack-description').innerHTML = 'Firepower: ' + firepower;
+  // //show firepower
+  // document.getElementById('attack-description').innerHTML = 'Firepower: ' + firepower;
+
+  document.getElementById('attack-description').innerHTML = (`Firepower: ${firepower}`);//'Firepower: ' + firepower;
 
   //init once
   if(!this.attackInitiated) {
@@ -60,7 +62,7 @@ OregonH.UI.fight = function(){
   if(damage < this.caravan.crew) {
     this.caravan.crew -= damage;
     this.caravan.money += gold;
-    this.notify(damage + ' people were killed fighting', 'negative');
+    this.notify(`${damage} people were killed fighting`, 'negative');
     this.notify('Found $' + gold, 'gold');
   }
   else {
@@ -83,7 +85,7 @@ OregonH.UI.runaway = function(){
   //check there are survivors
   if(damage < this.caravan.crew) {
     this.caravan.crew -= damage;
-    this.notify(damage + ' people were killed running', 'negative');
+    this.notify(`${damage} people were killed running`, 'negative');
   }
   else {
     this.caravan.crew = 0;
@@ -158,7 +160,7 @@ OregonH.UI.buyProduct = function(product) {
 
   OregonH.UI.caravan[product.item] += +product.qty;
 
-  OregonH.UI.notify('Bought ' + product.qty + ' x ' + product.item, 'positive');
+  OregonH.UI.notify(`Bought ${product.qty} x ${product.item}`, 'positive');
 
   //update weight
   OregonH.UI.caravan.updateWeight();
