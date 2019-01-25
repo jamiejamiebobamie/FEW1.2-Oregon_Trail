@@ -14,6 +14,20 @@ OregonH.Event.eventTypes = [
     type: 'STAT-CHANGE',
     notification: 'negative',
     stat: 'crew',
+    value: -50,
+    text: 'Meteor shower. Casualties: '
+  },
+  {
+    type: 'STAT-CHANGE',
+    notification: 'positive',
+    stat: 'crew',
+    value: +50,
+    text: 'Aphrodisiac + time: '
+  },
+  {
+    type: 'STAT-CHANGE',
+    notification: 'negative',
+    stat: 'crew',
     value: -4,
     text: 'Flu outbreak. Casualties: '
   },
@@ -26,10 +40,24 @@ OregonH.Event.eventTypes = [
   },
   {
     type: 'STAT-CHANGE',
+    notification: 'positive',
+    stat: 'food',
+    value: +10,
+    text: 'Cannibalism. (You ate someone not in your crew.) Food gained: '
+  },
+  {
+    type: 'STAT-CHANGE',
     notification: 'negative',
     stat: 'money',
     value: -50,
     text: 'Pick pockets steal $'
+  },
+  {
+    type: 'STAT-CHANGE',
+    notification: 'positive',
+    stat: 'money',
+    value: +1000,
+    text: 'Gold! Money gained: '
   },
   {
     type: 'STAT-CHANGE',
@@ -60,6 +88,13 @@ OregonH.Event.eventTypes = [
     text: 'Found wild oxen. New oxen: '
   },
   {
+    type: 'STAT-CHANGE',
+    notification: 'positive',
+    stat: 'oxen',
+    value: 15,
+    text: 'Rut season: New oxen: '
+  },
+  {
     type: 'SHOP',
     notification: 'neutral',
     text: 'You have found a shop',
@@ -83,6 +118,15 @@ OregonH.Event.eventTypes = [
   },
   {
     type: 'SHOP',
+    notification: 'positive',
+    text: 'You have found a recently abandoned house',
+    products: [
+      {item: 'food', qty: 45, price: 0},
+      {item: 'firepower', qty: 12, price: 0},
+    ]
+  },
+  {
+    type: 'SHOP',
     notification: 'neutral',
     text: 'Smugglers sell various goods',
     products: [
@@ -97,6 +141,11 @@ OregonH.Event.eventTypes = [
       notification: 'negative',
       text: 'Bandits are attacking you'
     },
+    {
+        type: 'ATTACK',
+        notification: 'negative',
+        text: 'Bears are attacking you'
+      },
     {
       type: 'ATTACK',
       notification: 'negative',

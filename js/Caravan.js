@@ -33,12 +33,6 @@ OregonH.Caravan.updateWeight = function(){
     droppedGuns++;
   }
 
-  // // Original Source
-  // this.ui.notify('Left ' + droppedGuns + ' guns behind', 'negative');
-  //
-  // // Becomes
-  // this.ui.notify(`Left ${droppedGuns} guns behind`, 'negative');
-
   if(droppedGuns) {
     this.ui.notify(`Left ${droppedGuns} guns behind`, 'negative');
   }
