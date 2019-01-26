@@ -3,15 +3,23 @@ class Game {
       constructor() {
         // Create dependent Objects
         this.ui = new UI(this);
-        this.eventManager = new eventManager(this);
-        this.caravan = new Caravan(this, 0, 0, 30, 80, 2, 300, 2); //do i need to pass 'this' in as a reference?
+        this.ui.gameSession = this;
+
+
+        this.eventManager = new eventManager();
+        this.eventManager.gameSession = this;
+
+        this.caravan = new Caravan(0, 0, 30, 80, 2, 300, 2); //do i need to pass 'this' in as a reference?
 
         // pass references - set dependencies
         this.caravan.ui = this.ui;
         this.caravan.eventManager = this.eventManager;
+        this.caravan.gameSession = this;
 
         this.ui.caravan = this.caravan;
         this.ui.eventManager = this.eventManager;
+        this.ui.gameSession = this;
+
 
         this.eventManager.caravan = this.caravan;
         this.eventManager.ui = this.ui;
@@ -29,6 +37,8 @@ class Game {
         this.EVENT_PROBABILITY = 0.15;
         this.ENEMY_FIREPOWER_AVG = 5;
         this.ENEMY_GOLD_AVG = 50; //variables attached to OregonH namespace
+        this.previousTime;
+        this.timestep = null;
 
         // begin adventure!
         this.startJourney();
@@ -45,12 +55,12 @@ class Game {
     step(timestep){
         //starting, setup the previous time for the first time
         if(!this.previousTime){
-          this.previousTime = timestamp;
+          this.previousTime = this.timestamp;
           this.updateGame();
         }
 
         //time difference
-        let progress = timestamp - this.previousTime;
+        let progress = this.timestamp - this.previousTime;
 
         //game update
         if(progress >= this.GAME_SPEED) {

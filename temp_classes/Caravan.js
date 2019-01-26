@@ -7,6 +7,7 @@ class Caravan {
         this.oxen = oxen;
         this.money = money;
         this.firepower = firepower;
+        this.gameSession = undefined;
 
         this.ui = undefined;
     };
@@ -17,16 +18,16 @@ class Caravan {
         let droppedGuns = 0;
 
         //how much can the caravan carry
-        this.capacity = this.oxen * gameSession.WEIGHT_PER_OX + this.crew * gameSession.WEIGHT_PER_PERSON;
+        this.capacity = this.oxen * this.gameSession.WEIGHT_PER_OX + this.crew * this.gameSession.WEIGHT_PER_PERSON;
 
         //how much weight do we currently have
-        this.weight = this.food * gameSession.FOOD_WEIGHT + this.firepower * gameSession.FIREPOWER_WEIGHT;
+        this.weight = this.food * this.gameSession.FOOD_WEIGHT + this.firepower * this.gameSession.FIREPOWER_WEIGHT;
 
         //drop things behind if it's too much weight
         //assume guns get dropped before food
         while(this.firepower && this.capacity <= this.weight) {
           this.firepower--;
-          this.weight -= gameSession.FIREPOWER_WEIGHT;
+          this.weight -= this.gameSession.FIREPOWER_WEIGHT;
           droppedGuns++;
         }
 
@@ -36,7 +37,7 @@ class Caravan {
 
         while(this.food && this.capacity <= this.weight) {
           this.food--;
-          this.weight -= gameSession.FOOD_WEIGHT;
+          this.weight -= this.gameSession.FOOD_WEIGHT;
           droppedFood++;
         }
 
@@ -48,12 +49,12 @@ class Caravan {
     updateDistance(){
         //the closer to capacity, the slower
         let diff = this.capacity - this.weight;
-        let speed = gameSession.SLOW_SPEED + diff/this.capacity * gameSession.FULL_SPEED;
+        let speed = this.gameSession.SLOW_SPEED + diff/this.capacity * this.gameSession.FULL_SPEED;
         this.distance += speed;
     };
 
     consumeFood(){
-        this.food -= this.crew * gameSession.FOOD_PER_PERSON;
+        this.food -= this.crew * this.gameSession.FOOD_PER_PERSON;
 
         if(this.food < 0) {
           this.food = 0;

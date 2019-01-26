@@ -2,6 +2,11 @@ class UI {
     constructor(){
         this.caravan = undefined;
         this.eventManager = undefined;
+
+        this.gameSession = undefined;
+
+        this.firepower = undefined;
+        this.gold = undefined;
     };
 
     notify(message, type){
@@ -20,10 +25,10 @@ class UI {
         document.getElementById('stat-weight').innerHTML = Math.ceil(this.caravan.weight) + '/' + this.caravan.capacity;
 
         //update caravan position
-        document.getElementById('caravan').style.left = (380 * this.caravan.distance/gameSession.FINAL_DISTANCE) + 'px';
+        document.getElementById('caravan').style.left = (380 * this.caravan.distance/this.gameSession.FINAL_DISTANCE) + 'px';
     };
 
-    showAttack(firePower, gold){
+    showAttack(firepower, gold){
         const attackDiv = document.getElementById('attack');
         attackDiv.classList.remove('hidden');
 
@@ -69,7 +74,7 @@ class UI {
 
           //resume journey
           document.getElementById('attack').classList.add('hidden');
-          this.game.resumeJourney();
+          this.gameSession.resumeJourney();
     };
 
     runAway(){
@@ -96,7 +101,7 @@ class UI {
 
           //resume journey
           document.getElementById('attack').classList.add('hidden');
-          this.game.resumeJourney();
+          this.gameSession.resumeJourney();
     };
 
     showShop(products){
@@ -108,10 +113,30 @@ class UI {
           //init the shop just once
           if(!this.shopInitiated) {
 
+              shopDiv.addEventListener('click', function(e){
+                //what was clicked
+                let target = e.target || e.src;
 
-          this.shopDivHandler(e)
+                //exit button
+                if(target.tagName == 'BUTTON') {
+                  //resume journey
+                  shopDiv.classList.add('hidden');
+                  this.gameSession.resumeJourney();
+                }
+                else if(target.tagName == 'DIV' && target.className.match(/product/)) {
 
-            this.shopInitiated = true;
+                  this.buyProduct({
+                    item: target.getAttribute('data-item'),
+                    qty: target.getAttribute('data-qty'),
+                    price: target.getAttribute('data-price')
+                  });
+
+                }
+              });
+
+
+              // this.shopDivHandler(e) //TO-DO:: implement shopDivHandler method
+              this.shopInitiated = true;
           }
 
           //clear existing content
@@ -134,11 +159,11 @@ class UI {
         if(target.tagName == 'BUTTON') {
           //resume journey
           shopDiv.classList.add('hidden');
-          gameSession.UI.game.resumeJourney();
+          this.gameSession.UI.game.resumeJourney();
         }
         else if(target.tagName == 'DIV' && target.className.match(/product/)) {
 
-          gameSession.UI.buyProduct({
+          this.buyProduct({
             item: target.getAttribute('data-item'),
             qty: target.getAttribute('data-qty'),
             price: target.getAttribute('data-price')
@@ -148,21 +173,21 @@ class UI {
 
     buyProduct(product){
         //check we can afford it
-        if(product.price > gameSession.UI.caravan.money) {
-          gameSession.UI.notify('Not enough money', 'negative');
+        if(product.price > this.caravan.money) {
+          this.gameSession.UI.notify('Not enough money', 'negative');
           return false;
         }
 
-        gameSession.UI.caravan.money -= product.price;
+        this.caravan.money -= product.price;
 
-        gameSession.UI.caravan[product.item] += +product.qty;
+        this.caravan[product.item] += +product.qty;
 
-        gameSession.UI.notify(`Bought ${product.qty} x ${product.item}`, 'positive');
+        this.notify(`Bought ${product.qty} x ${product.item}`, 'positive');
 
         //update weight
-        gameSession.UI.caravan.updateWeight();
+        this.caravan.updateWeight();
 
         //update visuals
-        gameSession.UI.refreshStats();
+        this.refreshStats();
     }
 };

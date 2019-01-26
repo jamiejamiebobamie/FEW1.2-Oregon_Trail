@@ -17,42 +17,42 @@ OregonH.ENEMY_GOLD_AVG = 50;
 
 OregonH.Game = {};
 
-//initiate the game
-OregonH.Game.init = function(){
+    //initiate the game
+    OregonH.Game.init = function(){
 
-  //reference ui
-  this.ui = OregonH.UI;
+      //reference ui
+      this.ui = OregonH.UI;
 
-  //reference event manager
-  this.eventManager = OregonH.Event;
+      //reference event manager
+      this.eventManager = OregonH.Event;
 
-  //setup caravan
-  this.caravan = OregonH.Caravan;
-  this.caravan.init({
-    day: 0,
-    distance: 0,
-    crew: 30,
-    food: 80,
-    oxen: 2,
-    money: 300,
-    firepower: 2
-  });
+      //setup caravan
+      this.caravan = OregonH.Caravan;
+      this.caravan.init({
+        day: 0,
+        distance: 0,
+        crew: 30,
+        food: 80,
+        oxen: 2,
+        money: 300,
+        firepower: 2
+      });
 
-  //pass references
-  this.caravan.ui = this.ui;
-  this.caravan.eventManager = this.eventManager;
+      //pass references
+      this.caravan.ui = this.ui;
+      this.caravan.eventManager = this.eventManager;
 
-  this.ui.game = this;
-  this.ui.caravan = this.caravan;
-  this.ui.eventManager = this.eventManager;
+      this.ui.game = this;
+      this.ui.caravan = this.caravan;
+      this.ui.eventManager = this.eventManager;
 
-  this.eventManager.game = this;
-  this.eventManager.caravan = this.caravan;
-  this.eventManager.ui = this.ui;
+      this.eventManager.game = this;
+      this.eventManager.caravan = this.caravan;
+      this.eventManager.ui = this.ui;
 
-  //begin adventure!
-  this.startJourney();
-};
+      //begin adventure!
+      this.startJourney();
+    };
 
 //start the journey and time starts running
 OregonH.Game.startJourney = function() {
