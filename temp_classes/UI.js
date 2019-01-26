@@ -7,6 +7,9 @@ class UI {
 
         this.firepower = undefined;
         this.gold = undefined;
+        this.fight = undefined;
+        this.runaway = undefined;
+
     };
 
     notify(message, type){
@@ -159,7 +162,7 @@ class UI {
         if(target.tagName == 'BUTTON') {
           //resume journey
           shopDiv.classList.add('hidden');
-          this.gameSession.UI.game.resumeJourney();
+          this.gameSession.resumeJourney();
         }
         else if(target.tagName == 'DIV' && target.className.match(/product/)) {
 
@@ -174,7 +177,7 @@ class UI {
     buyProduct(product){
         //check we can afford it
         if(product.price > this.caravan.money) {
-          this.gameSession.UI.notify('Not enough money', 'negative');
+          this.notify('Not enough money', 'negative');
           return false;
         }
 

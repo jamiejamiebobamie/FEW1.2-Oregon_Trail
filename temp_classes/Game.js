@@ -1,28 +1,31 @@
 class Game {
       // Initialize the Game Object
       constructor() {
-        // Create dependent Objects
-        this.ui = new UI(this);
+
+        this.ui = new UI();
+        this.caravan = new Caravan(0, 0, 30, 80, 2, 300, 2); //do i need to pass 'this' in as a reference?
+        this.eventManager = new eventManager();
+
+        console.log(this.ui.gameSession)
+
         this.ui.gameSession = this;
 
+        console.log(this.ui.gameSession)
 
-        this.eventManager = new eventManager();
+
         this.eventManager.gameSession = this;
+        this.caravan.gameSession = this;
 
-        this.caravan = new Caravan(0, 0, 30, 80, 2, 300, 2); //do i need to pass 'this' in as a reference?
+        // console.log(this.ui.gameSession)
 
-        // pass references - set dependencies
         this.caravan.ui = this.ui;
         this.caravan.eventManager = this.eventManager;
-        this.caravan.gameSession = this;
 
         this.ui.caravan = this.caravan;
         this.ui.eventManager = this.eventManager;
-        this.ui.gameSession = this;
 
-
-        this.eventManager.caravan = this.caravan;
         this.eventManager.ui = this.ui;
+        this.eventManager.caravan = this.caravan;
 
         this.WEIGHT_PER_OX = 20;
         this.WEIGHT_PER_PERSON = 2;
